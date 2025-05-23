@@ -37,13 +37,16 @@ class Post(Base):
     content = Column(String)
     user_id = Column(Integer, ForeignKey("users.id"))
     user =  relationship("User", back_populates="posts")
-    
-# Creating a Session
-Session = sessionmaker(bind=engine)
-session = Session()
+  
 
-test_user = User(name="Test User")
-test_profile = Profile(genre="Test Genre", user=test_user)
-test_post = Post(title="Test Post", content="Test Content", user=test_user)
-session.add_all([test_user, test_profile, test_post])
-session.commit()
+if __name__ == '__main__':  
+      
+# Creating a Session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    test_user = User(name="Test User")
+    test_profile = Profile(genre="Test Genre", user=test_user)
+    test_post = Post(title="Test Post", content="Test Content", user=test_user)
+    session.add_all([test_user, test_profile, test_post])
+    session.commit()
